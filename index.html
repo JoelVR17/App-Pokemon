@@ -9,10 +9,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=}, initial-scale=1.0" />
-    <!-- titulo -->
-    <title>XXXXX</title>
-    <!-- estilos -->
+    <!-- title -->
+    <title>Pokemon</title>
+    <!-- styles -->
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- icon page -->
+    <link rel="shortcut icon" href="./img/logo.webp" type="favicon/ico" />
     <!-- boostrap -->
     <link
       rel="stylesheet"
@@ -22,31 +24,59 @@
     />
     <!-- charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+    </style>
   </head>
   <!-- fin.head -->
 
   <!--SE ESTABLECE EL BODY-->
   <body>
-    <!--SE ESTABLECE EL HEADER-->
-    <header></header>
-    <!-- fin.header -->
-
+    <a href="#" class="w-100 d-flex justify-content-center">
+      <img
+        src="./img/icon.webp"
+        alt="iconPokemon"
+        class="w-25 mx-auto h-auto my-4 logo"
+      />
+    </a>
     <!-- MAIN -->
-    <main class="container">
-      <div>
-        <canvas id="myChart" width="400" height="400"></canvas>
+    <main class="w-100 h-100">
+      <div class="container mt-5 h-auto mb-3">
+        <div class="container__name w-50 mx-auto py-5">
+          <div class="input-group d-flex flex-column">
+            <h1 class="text-center mb-5 mt-3 title">Buscar Pokemon</h1>
+            <input
+              type="text"
+              class="form-control w-100 inputName"
+              aria-label="Text input with radio button"
+              placeholder="Escribir Nombre"
+              id="namePoke"
+            />
+            <button onclick="showPokemon()" class="btn btn-warning my-4 p-3">
+              Buscar
+            </button>
+            <div class="w-100" id="group"></div>
+          </div>
+        </div>
+
+        <div class="container" id="divContainer"></div>
+
       </div>
     </main>
     <!-- fin.main -->
 
     <!--SE ESTABLECE EL FOOTER-->
-    <footer></footer>
+    <footer class="d-flex align-items-center mt-5">
+      <p class="m-0">Joel Vargas ©<span id="rights"></span></p>
+    </footer>
     <!-- fin.footer -->
   </body>
   <!-- fin.body -->
 
   <!-- SCRIPTS-->
   <script src="./js/script.js"></script>
+  <script src="./js/getDate.js"></script>
   <!-- icons -->
   <script
     src="https://kit.fontawesome.com/fe4e860efc.js"
