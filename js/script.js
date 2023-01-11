@@ -3,36 +3,126 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 
 // # Function for get Pokemon of the API
 const getPokemon = async (pokemon) => {
-  try {
-    const response = await fetch(`${url}${pokemon}`);
-    if (!response.ok) {
-      alert("No registrado en la PokeDex");
-      return;
-    }
+  // ?  Set the contents
+  var typesPoke = [];
+  var typesStats = [];
 
-    const sought = await response.json();
+  // ? Fetch the data of the pokemon
+  await fetch(`${url}${pokemon}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // ? Get the elements of the DOM
+      var div = document.getElementById("divContainer");
+      var divGroup = document.getElementById("group");
 
-    return sought;
-  } catch (e) {
-    console.log(e);
-  }
+      // ? For each type it fill the array
+      data.types.forEach((type) => {
+        typesPoke.push(type);
+      });
+
+      // ? For each type of stat
+      data.stats.forEach((type) => {
+        typesStats.push(type);
+      });
+
+      // ? Verify if the name is empty
+      if (!pokemon == "") {
+        // ? Set the HTML with information of the Pokemon has been searched
+        div.innerHTML = `
+      <div class="row" id="img">
+          <img src="${data.sprites.front_default}" class="w-md-50">
+        </div>
+      <div class="w-100 row container__stats">
+
+        <div class="col" id="info">
+          <div class="element">
+            <h3>Nombre: </h3>
+            <p class="m-0">${data.name}</p>
+          </div>
+          <div class="element">
+            <h3>Tipo: </h3>
+            <p class="m-0">${typesPoke[0].type.name}</p>
+          </div>
+        </div>
+
+        <div class="col" id="info">
+          <div class="element">
+            <h3>Vida: </h3>
+            <p class="m-0">${typesStats[0].base_stat}</p>
+          </div>
+          <div class="element">
+            <h3>Ataque: </h3>
+            <p class="m-0">${typesStats[1].base_stat}</p>
+          </div>
+          <div class="element">
+            <h3>Defensa: </h3>
+            <p class="m-0">${typesStats[2].base_stat}</p>
+          </div>
+        </div>
+
+        <div class="col" id="info">
+          <div class="element">
+            <h3>Ataque Especial: </h3>
+            <p class="m-0">${typesStats[3].base_stat}</p>
+          </div>
+          <div class="element">
+            <h3>Defensa Especial: </h3>
+            <p class="m-0">${typesStats[4].base_stat}</p>
+          </div>
+          <div class="element">
+            <h3>Velocidad: </h3>
+            <p class="m-0">${typesStats[5].base_stat}</p>
+          </div>
+        </div>
+
+      </div>`;
+
+        // ? If the name is empty show this error message
+      } else {
+        divGroup.innerHTML = `
+      <div class="element">
+        <p class="p-danger">Escriba un Nombre</p>
+      </div>`;
+      }
+    })
+
+    // ? Error during fetch
+    .catch((err) => console.log(err));
 };
 
 // # Function for get Pokemons of the API
 const getAllPokemons = async () => {
-  try {
-    const response = await fetch(`${url}?offset=20&limit=500"`);
-    if (!response.ok) {
-      alert("Error");
-      return;
-    }
+  
+  // ? Set globals variables
+  var i = 1;
 
-    const sought = await response.json();
-    return sought;
-  } catch (e) {
-    console.log(e);
-  }
+  // ? Get elements of the DOM with id
+  var table = document.getElementById("tablax");
+
+  // ? Fetch the data of the pokemon
+  await fetch(`${url}?offset=20&limit=5000"`)
+    .then((response) => response.json())
+    .then((data) => {
+
+      table.innerHTML = ""
+      var tbody = "<tbody>"
+
+      // ! ONLY PLACE THE LAST POKEMON
+      for (x of data.results) {
+        i++
+        tbody += `<tr><td>${x.name}</td></tr>`
+      }
+      
+      tbody += "</tbody>"
+
+      table.innerHTML = tbody
+    })
+
+    // ? Error during fetch
+    .catch((err) => console.log(err));
 };
+
+getAllPokemons();
 
 // # Get name of the input
 const getValueInput = () => {
@@ -43,34 +133,7 @@ const getValueInput = () => {
 // # Show the pokemon that has been searched
 const showPokemon = () => {
   let namePoke = getValueInput();
-  let pokemon = getPokemon(namePoke);
-  var div = document.getElementById("divContainer");
-  var divGroup = document.getElementById("group");
-
-  console.table(pokemon);
-
-  if (!namePoke == "") {
-    div.innerHTML = `
-    <div class="w-100 row">
-      <div class="col" id="img">
-        <img src="./img/logo.webp" class="w-50">
-      </div>
-    <div class="col" id="info">
-      <div class="element">
-        <h3>Nombre: </h3>
-        <p class="m-0">Pikachu</p>
-      </div>
-      <div class="element">
-        <h3>Tipo: </h3>
-        <p class="m-0">Fuego</p>
-      </div>
-    </div>`;
-  } else {
-    divGroup.innerHTML = `
-    <div class="element">
-      <p class="p-danger">Escriba un Nombre</p>
-    </div>`;
-  }
+  getPokemon(namePoke);
 };
 
 // # Get the canvas

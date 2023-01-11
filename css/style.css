@@ -7,7 +7,7 @@
   --secundary__hover: #2b72b9ba;
   --background: #202020;
   --element__background: #2b2b2b;
-  --danger: #DC3545;
+  --danger: #dc3545;
 }
 
 /* ? GLOBALES */
@@ -68,7 +68,7 @@ body {
 
 .inputName {
   padding: 20px !important;
-  font-size: 25px !important;
+  font-size: 15px !important;
   border-radius: 30px !important;
   border: none !important;
   text-align: center !important;
@@ -112,6 +112,60 @@ footer p {
   font-weight: 900;
 }
 
+/* ? HEADER */
+header {
+  height: 30px;
+  text-transform: uppercase;
+  margin:  0 !important;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+header nav div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  background-color: var(--secundary);
+  border-radius: 10px;
+}
+
+.focus {
+  color: #ffcb04 !important;
+}
+
+header nav div a {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+header nav div a:hover {
+  color: #ffcb04;
+  text-decoration: none;
+  transform: scale(1.1,1.1);
+  transition: all ease .5s;
+}
+
+/* ? MEDIA QUERY MD (tablets, 768px)*/
+@media (max-width: 481px) {
+
+  header {
+    height: auto !important;
+    margin: 10px;
+  }
+
+  header nav {
+    flex-direction: column;
+  }
+}
+
 /* ? CONTENT */
 #info {
   display: flex;
@@ -135,6 +189,8 @@ footer p {
   font-size: 27px;
   text-transform: uppercase;
   font-weight: 600;
+  color: #ffcb04;
+  letter-spacing: 4px;
 }
 
 .element p {
@@ -149,4 +205,57 @@ footer p {
   color: var(--white) !important;
   font-weight: 600 !important;
   padding: 1rem !important;
+}
+
+.w-md-50 {
+  width: 25% !important;
+}
+
+.w-j {
+  width: 50% !important;
+}
+
+.w-jo {
+  width: 25% !important;
+}
+
+.w-joe {
+  width: 75% !important;
+}
+
+/* ? TABLE */
+label, select {
+  color: var(--white) !important;
+}
+
+#tablax_paginate {
+  color: var(--white) !important;
+}
+
+/* ? MEDIA QUERY MD (tablets, 768px)*/
+@media (max-width: 769px) {
+  .container__stats {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .w-md-50 {
+    width: 50% !important;
+  }
+
+  .element h3 {
+    letter-spacing: 0px !important;
+  }
+
+  .w-j {
+    width: 100% !important;
+  }
+
+  .w-jo {
+    width: 50% !important;
+  }
+
+  .w-joe {
+    width: 100% !important;
+  }
 }

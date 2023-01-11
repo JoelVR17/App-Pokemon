@@ -22,6 +22,11 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <!-- datatable -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
+    />
     <!-- charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- fonts -->
@@ -49,26 +54,28 @@
         <!-- HEADER -->
         <header class="w-100 h-auto">
           <nav>
-            <div class="w-100"><a href="index.html" class="focus">Inicio</a></div>
+            <div class="w-100"><a href="index.html">Inicio</a></div>
             <div class="w-100">
               <a href="buscarPokemon.html">Buscar Pokémon</a>
             </div>
-            <div class="w-100"><a href="pokemons.html">Pokémons</a></div>
+            <div class="w-100">
+              <a href="pokemons.html" class="focus">Pokémons</a>
+            </div>
             <div class="w-100"><a href="graficos.html">Estadísticas</a></div>
           </nav>
         </header>
         <!-- fin.header -->
-        <div class="container__name w-j mx-auto py-1">
-          <div class="input-group d-flex flex-column">
-            <img
-              src="./img/logo.webp"
-              alt="iconPokemon"
-              class="w-jo mx-auto h-auto my-4 logo"
-            />
+        <div class="w-100 d-flex justify-content-center">
+          <div class="w-joe my-5">
+            <table id="tablax" class="table table-dark table-borderless w-100">
+              <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+              </thead>
+              
+            </table>
           </div>
         </div>
-
-        <div class="container" id="divContainer"></div>
       </div>
     </main>
     <!-- fin.main -->
@@ -84,6 +91,18 @@
   <!-- SCRIPTS-->
   <script src="./js/script.js"></script>
   <script src="./js/getDate.js"></script>
+  <!-- JQUERY -->
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#tablax").DataTable();
+    });
+  </script>
   <!-- icons -->
   <script
     src="https://kit.fontawesome.com/fe4e860efc.js"
