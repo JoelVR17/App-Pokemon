@@ -92,42 +92,45 @@ const getPokemon = async (pokemon) => {
 
 // # Function for get Pokemons of the API
 const getAllPokemons = async () => {
-  
   // ? Set globals variables
-  var i = 1;
+  var i = 0;
 
   // ? Get elements of the DOM with id
-  var table = document.getElementById("tablax");
+  var table = document.getElementById("tbody");
 
   // ? Fetch the data of the pokemon
   await fetch(`${url}?offset=20&limit=5000"`)
     .then((response) => response.json())
     .then((data) => {
+      table.innerHTML = "";
+      var tbody = "<tbody>";
 
-      table.innerHTML = ""
-      var tbody = "<tbody>"
-
-      // ! ONLY PLACE THE LAST POKEMON
       for (x of data.results) {
-        i++
-        tbody += `<tr><td>${x.name}</td></tr>`
+        i++;
+        tbody += `<tr><td>${i}</td><td>${x.name}</td></tr>`;
       }
-      
-      tbody += "</tbody>"
 
-      table.innerHTML = tbody
-    })
+      tbody += "</tbody>";
 
-    // ? Error during fetch
-    .catch((err) => console.log(err));
+      table.innerHTML = tbody;
+    });
+
+  return (
+    data
+
+      // ? Error during fetch
+      .catch((err) => console.log(err))
+  );
 };
 
+// # Call the function
 getAllPokemons();
 
 // # Get name of the input
 const getValueInput = () => {
   let namePoke = document.getElementById("namePoke").value;
-  return namePoke;
+  let lowerName = namePoke.toLowerCase();
+  return lowerName;
 };
 
 // # Show the pokemon that has been searched
@@ -135,28 +138,3 @@ const showPokemon = () => {
   let namePoke = getValueInput();
   getPokemon(namePoke);
 };
-
-// # Get the canvas
-const chart = document.getElementById("myChart");
-
-// # Create the chart
-new Chart(chart, {
-  type: "bar",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-});

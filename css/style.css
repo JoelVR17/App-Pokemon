@@ -232,6 +232,12 @@ label, select {
   color: var(--white) !important;
 }
 
+.container__charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ? MEDIA QUERY MD (tablets, 768px)*/
 @media (max-width: 769px) {
   .container__stats {
@@ -257,5 +263,12 @@ label, select {
 
   .w-joe {
     width: 100% !important;
+  }
+}
+
+/* ? MEDIA QUERY SM (phone, 481px)*/
+@media (max-width: 481px) {
+  .container__charts {
+    flex-direction: column;
   }
 }
